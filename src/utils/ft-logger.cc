@@ -12,21 +12,22 @@
 // Logger: https://www.geeksforgeeks.org/cpp/logging-system-in-cpp/
 // =================================================================
 //
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
 //
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 // ============================ CHANGELOG ============================
 // 01/01/2026 - Initial version.
+// 02/01/2026 - Updated to write files to ./logs/ directory.
 // ===================================================================
 
 #include <ctime>
@@ -34,6 +35,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <filesystem>
 #include "ft-logger.h"
 
 using namespace std;
@@ -41,7 +43,13 @@ using namespace std;
 // Constructor: Opens the log file in append mode
 Logger::Logger(const string& filename)
 {
-    logFile.open(filename, ios::app);
+    std::filesystem::path cwd = std::filesystem::current_path();
+    std::filesystem::path logPath = std::filesystem::current_path() / "logs" / filename;
+    cout << "Log file name: " << filename << endl;
+    cout << "Current working directory: " << cwd << endl;
+    cout << "Log file path: " << logPath << endl;
+
+    logFile.open(logPath, ios::app);
     if (!logFile.is_open()) {
         cerr << printf("Error opening log file: %s", filename.c_str()) << endl;
     }
