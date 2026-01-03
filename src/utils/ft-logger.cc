@@ -27,7 +27,9 @@
 //
 // ============================ CHANGELOG ============================
 // 01/01/2026 - Initial version.
-// 02/01/2026 - Updated to write files to ./logs/ directory.
+// 02/01/2026 - Updated to write files to ./logs/ directory in CWD.
+// 03/01/2026 - Create logs directory if it does not exist and fixed
+// filename output in console when the logfile cannot be opened.
 // ===================================================================
 
 #include <ctime>
@@ -43,15 +45,26 @@ using namespace std;
 // Constructor: Opens the log file in append mode
 Logger::Logger(const string& filename)
 {
+    // Retrieve current working directory and set log file path
     std::filesystem::path cwd = std::filesystem::current_path();
-    std::filesystem::path logPath = std::filesystem::current_path() / "logs" / filename;
+    std::filesystem::path logDir = cwd / "logs";
+    std::filesystem::path logPath = logDir / filename;
+    
+    // Debug output
     cout << "Log file name: " << filename << endl;
     cout << "Current working directory: " << cwd << endl;
     cout << "Log file path: " << logPath << endl;
+    
+    // Create logs directory if it doesn't exist
+    if (!std::filesystem::exists(logDir)) {
+        std::filesystem::create_directory(logDir);
+        cout << "Created logs directory: " << logDir << endl;
+    }
 
+    // Open the log file in append mode
     logFile.open(logPath, ios::app);
     if (!logFile.is_open()) {
-        cerr << printf("Error opening log file: %s", filename.c_str()) << endl;
+        cerr << "Error opening log file: " << filename << endl;
     }
 }
 
