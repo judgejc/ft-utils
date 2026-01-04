@@ -50,11 +50,6 @@ Logger::Logger(const string& filename)
     std::filesystem::path logDir = cwd / "logs";
     std::filesystem::path logPath = logDir / filename;
     
-    // Debug output
-    cout << "Log file name: " << filename << endl;
-    cout << "Current working directory: " << cwd << endl;
-    cout << "Log file path: " << logPath << endl;
-    
     // Create logs directory if it doesn't exist
     if (!std::filesystem::exists(logDir)) {
         std::filesystem::create_directory(logDir);
