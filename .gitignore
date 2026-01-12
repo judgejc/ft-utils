@@ -40,6 +40,5 @@
 # Debug information files
 *.dwo
 
-# User created files
-ft-utils
-ft-utils.log
+# Log files
+*.log

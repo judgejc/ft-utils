@@ -4,7 +4,7 @@ LDFLAGS  := -L/usr/lib -lstdc++ -lm
 BUILD    := ./build
 OBJ_DIR  := $(BUILD)/objects
 APP_DIR  := $(BUILD)/apps
-TARGET   := ft-utils
+TARGET   := test-utils
 INCLUDE  := -Iinclude/
 SRC      :=                      \
    $(wildcard src/utils/*.cc) \

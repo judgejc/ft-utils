@@ -1,9 +1,8 @@
-// ft-utils
+// test-utils
 // Copyright (c) 2026 James Crowley (judgejc.net)
 // https://github.com/judgejc/ft-utils
 //
-// A set of utilities to extend the Flaschen Taschen Server
-// for easier management and integration with other platforms. 
+// A simple app to test the ft-utils library.
 //
 // ==================== CODE REFERENCES ====================
 // FT Server: https://github.com/hzeller/flaschen-taschen
@@ -30,7 +29,8 @@
 #include "ft-logger.h"
 
 // A simple program to test logger functionality
-int main() {
+int main()
+{
     Logger logger("ft-utils.log");
 
     logger.log(INFO, "ft-utils logging initialized.");
